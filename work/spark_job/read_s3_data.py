@@ -1,24 +1,14 @@
 import sys
+import read_s3_data_slave as s
 from pyspark import SparkContext
 
-#Get arguments.
+
 uri = sys.argv[1]
-AWS_ACCESS_KEY_ID = sys.argv[2]
-AWS_SECRET_ACCESS_KEY = sys.argv[3]
-
-sc = SparkContext("local", "S3 loader")
-sc._jsc.hadoopConfiguration().set("fs.s3n.awsAccessKeyId", AWS_ACCESS_KEY_ID)
-sc._jsc.hadoopConfiguration().set("fs.s3n.awsSecretAccessKey", AWS_SECRET_ACCESS_KEY)
-
-text_file = sc.textFile(uri)
-words =  text_file.flatMap(lambda line: line.split(" "))
-word_count = words.map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b) 
-
-print word_count.collect()
+aws_key_id = sys.argv[2]
+aws_access_key = sys.argv[3]
 
 
-#counts = text_file.flatMap(lambda line: line.split(" ")) \
-#             .map(lambda word: (word, 1)) \
-#             .reduceByKey(lambda a, b: a + b)
-
-#print counts
+print s.count_word_in_text_from_s3(uri=uri, \
+				  aws_key_id=aws_key_id, \
+				  aws_access_key=aws_access_key )
+				

@@ -22,11 +22,11 @@ Vagrant.configure(2) do |config|
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
-  # config.vm.network "forwarded_port", guest: 80, host: 8080
+  #config.vm.network "forwarded_port", guest: 5000, host: 5000
 
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
-  config.vm.network "public_network", bridge:"eth0", ip:"192.168.18.31"
+  config.vm.network "public_network", bridge:"eth1", ip:"192.168.18.31"
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
@@ -70,7 +70,8 @@ Vagrant.configure(2) do |config|
      sudo wget https://bootstrap.pypa.io/get-pip.py
      sudo python get-pip.py
      sudo rm get-pip.py
-     sudo pip install flask flask-restful 
+     sudo pip install flask flask-restful celery
+     sudo apt-get install -y rabbitmq-server
   SHELL
 
   #Provision script to build spark.
