@@ -1,18 +1,19 @@
-spark-submit /home/vagrant/work/spark_job/read_s3_data.py s3n://bigdatasimplestorage/data/pg38508.txt AKIAIVNDU45MGS7ORL3A UmZ6DOBIxOdgAw2avG4bfiTrXKKluymscgjz3r8n
+spark-submit /home/vagrant/work/spark_job/read_s3_data.py s3n://bigdatasimplestorage/data/pg38508.txt ${YOUR_AWS_ACCESS_KEY_ID} ${YOUR_AWS_SECRET_ACCESS_KEY}
 
 
-spark-submit --py-files /home/vagrant/work/spark_job/read_s3_data.py /home/vagrant/work/spark_job/read_s3_data_slave.py s3n://bigdatasimplestorage/data/pg38508.txt AKIAIVNDU45MGS7ORL3A UmZ6DOBIxOdgAw2avG4bfiTrXKKluymscgjz3r8n
+spark-submit --py-files /home/vagrant/work/spark_job/read_s3_data.py /home/vagrant/work/spark_job/read_s3_data_slave.py s3n://bigdatasimplestorage/data/pg38508.txt ${YOUR_AWS_ACCESS_KEY_ID} ${YOUR_AWS_SECRET_ACCESS_KEY}
+
 
 
 spark-submit /home/vagrant/work/spark_job/read_s3_data.zip \
 s3n://bigdatasimplestorage/data/pg38508.txt \
-AKIAIVNDU45MGS7ORL3A \
-UmZ6DOBIxOdgAw2avG4bfiTrXKKluymscgjz3r8n
+${YOUR_AWS_ACCESS_KEY_ID} \
+${YOUR_AWS_SECRET_ACCESS_KEY}
 
 
 {"uri": "s3n://bigdatasimplestorage/data/pg38508.txt",
- "AWS_SECRET_ACCESS_KEY":"UmZ6DOBIxOdgAw2avG4bfiTrXKKluymscgjz3r8n",
- "AWS_ACCESS_KEY_ID":"AKIAIVNDU45MGS7ORL3A"
+ "AWS_SECRET_ACCESS_KEY":"${YOUR_AWS_SECRET_ACCESS_KEY}",
+ "AWS_ACCESS_KEY_ID":"${YOUR_AWS_SECRET_ACCESS_KEY}"
 
 'uri'],
 	args['AWS_ACCESS_KEY_ID'],
